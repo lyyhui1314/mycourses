@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="androiddbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="coursename" Type="nvarchar(max)" />
+    <Property Name="teacher" Type="nvarchar(max)" />
+    <Property Name="classroom" Type="nvarchar(max)" />
+    <Property Name="day" Type="int" />
+    <Property Name="classstart" Type="int" />
+    <Property Name="classend" Type="int" />
+  </EntityType>
+  <EntityType Name="uc">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uid" Type="int" />
+    <Property Name="cid" Type="int" />
+  </EntityType>
+  <EntityType Name="usr">
+    <Key>
+      <PropertyRef Name="uid" />
+    </Key>
+    <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="no" Type="nvarchar(max)" />
+    <Property Name="pw" Type="nvarchar(max)" />
+    <Property Name="school" Type="nvarchar(max)" />
+    <Property Name="major" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_uc_course">
+    <End Role="course" Type="Self.course" Multiplicity="0..1" />
+    <End Role="uc" Type="Self.uc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="cid" />
+      </Principal>
+      <Dependent Role="uc">
+        <PropertyRef Name="cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_uc_usr">
+    <End Role="usr" Type="Self.usr" Multiplicity="0..1" />
+    <End Role="uc" Type="Self.uc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usr">
+        <PropertyRef Name="uid" />
+      </Principal>
+      <Dependent Role="uc">
+        <PropertyRef Name="uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="androiddbModelStoreContainer">
+    <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="uc" EntityType="Self.uc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usr" EntityType="Self.usr" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_uc_course" Association="Self.FK_uc_course">
+      <End Role="course" EntitySet="course" />
+      <End Role="uc" EntitySet="uc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_uc_usr" Association="Self.FK_uc_usr">
+      <End Role="usr" EntitySet="usr" />
+      <End Role="uc" EntitySet="uc" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

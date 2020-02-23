@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="androiddbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursename" Type="nvarchar(max)" />
+          <Property Name="teacher" Type="nvarchar(max)" />
+          <Property Name="classroom" Type="nvarchar(max)" />
+          <Property Name="day" Type="int" />
+          <Property Name="classstart" Type="int" />
+          <Property Name="classend" Type="int" />
+        </EntityType>
+        <EntityType Name="uc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uid" Type="int" />
+          <Property Name="cid" Type="int" />
+        </EntityType>
+        <EntityType Name="usr">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="no" Type="nvarchar(max)" />
+          <Property Name="pw" Type="nvarchar(max)" />
+          <Property Name="school" Type="nvarchar(max)" />
+          <Property Name="major" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_uc_course">
+          <End Role="course" Type="Self.course" Multiplicity="0..1" />
+          <End Role="uc" Type="Self.uc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="cid" />
+            </Principal>
+            <Dependent Role="uc">
+              <PropertyRef Name="cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_uc_usr">
+          <End Role="usr" Type="Self.usr" Multiplicity="0..1" />
+          <End Role="uc" Type="Self.uc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usr">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="uc">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="androiddbModelStoreContainer">
+          <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uc" EntityType="Self.uc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usr" EntityType="Self.usr" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_uc_course" Association="Self.FK_uc_course">
+            <End Role="course" EntitySet="course" />
+            <End Role="uc" EntitySet="uc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_uc_usr" Association="Self.FK_uc_usr">
+            <End Role="usr" EntitySet="usr" />
+            <End Role="uc" EntitySet="uc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="androiddbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="teacher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="classroom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="classstart" Type="Int32" />
+          <Property Name="classend" Type="Int32" />
+          <NavigationProperty Name="uc" Relationship="Self.FK_uc_course" FromRole="course" ToRole="uc" />
+        </EntityType>
+        <EntityType Name="uc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uid" Type="Int32" />
+          <Property Name="cid" Type="Int32" />
+          <NavigationProperty Name="course" Relationship="Self.FK_uc_course" FromRole="uc" ToRole="course" />
+          <NavigationProperty Name="usr" Relationship="androiddbModel.FK_uc_usr" FromRole="uc" ToRole="usr" />
+        </EntityType>
+        <Association Name="FK_uc_course">
+          <End Role="course" Type="Self.course" Multiplicity="0..1" />
+          <End Role="uc" Type="Self.uc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="cid" />
+            </Principal>
+            <Dependent Role="uc">
+              <PropertyRef Name="cid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="course" EntityType="Self.course" />
+          <EntitySet Name="uc" EntityType="Self.uc" />
+          <AssociationSet Name="FK_uc_course" Association="Self.FK_uc_course">
+            <End Role="course" EntitySet="course" />
+            <End Role="uc" EntitySet="uc" />
+          </AssociationSet>
+          <EntitySet Name="usr" EntityType="androiddbModel.usr" />
+          <AssociationSet Name="FK_uc_usr" Association="androiddbModel.FK_uc_usr">
+            <End Role="usr" EntitySet="usr" />
+            <End Role="uc" EntitySet="uc" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="usr">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pw" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="school" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="major" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="uc" Relationship="androiddbModel.FK_uc_usr" FromRole="usr" ToRole="uc" />
+        </EntityType>
+        <Association Name="FK_uc_usr">
+          <End Type="androiddbModel.usr" Role="usr" Multiplicity="0..1" />
+          <End Type="androiddbModel.uc" Role="uc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usr">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="uc">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="androiddbModelStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="course">
+            <EntityTypeMapping TypeName="androiddbModel.course">
+              <MappingFragment StoreEntitySet="course">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="teacher" ColumnName="teacher" />
+                <ScalarProperty Name="classroom" ColumnName="classroom" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="classstart" ColumnName="classstart" />
+                <ScalarProperty Name="classend" ColumnName="classend" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uc">
+            <EntityTypeMapping TypeName="androiddbModel.uc">
+              <MappingFragment StoreEntitySet="uc">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usr">
+            <EntityTypeMapping TypeName="androiddbModel.usr">
+              <MappingFragment StoreEntitySet="usr">
+                <ScalarProperty Name="major" ColumnName="major" />
+                <ScalarProperty Name="school" ColumnName="school" />
+                <ScalarProperty Name="pw" ColumnName="pw" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
