@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <color android:color="#0022FF"></color>
+    </item>
+    <item android:state_checked="false">
+        <color android:color="#000000"></color>
+    </item><!--设置没有被选中时的样式,没有选中时是描边的-->
+
+</selector>

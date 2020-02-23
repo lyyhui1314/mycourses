@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:background="@drawable/register_bg">
+
+
+    <ImageView
+        android:id="@+id/ig_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:scaleType="fitStart"/>
+    <TextView
+        android:id="@+id/tv_jm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="欢迎使用超级课程表！"
+        android:textSize="30sp"
+        android:gravity="right" />
+
+    <EditText
+        android:id="@+id/noEt_register"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp"
+        android:textColor="#ffad33"
+        android:hint= "学号"
+        android:background="@drawable/bg_username"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:drawableLeft="@drawable/user"
+        android:drawablePadding="5dp"
+        android:maxLines="1"
+        android:layout_marginTop="100dp"/>
+
+    <EditText
+        android:id="@+id/pwEt_register"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp"
+        android:textColor="#ffad33"
+        android:hint="密码"
+        android:layout_below="@id/noEt_register"
+        android:layout_marginTop="15dp"
+        android:inputType="textPassword"
+        android:background="@drawable/bg_username"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="5dp"/>
+
+
+    <EditText
+        android:id="@+id/schoolEt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp"
+        android:textColor="#ffad33"
+        android:hint="学校"
+        android:layout_below="@id/pwEt_register"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_username"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:maxLines="1"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/school"/>
+
+    <EditText
+        android:id="@+id/majorEt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="16sp"
+        android:textColor="#ffad33"
+        android:hint="专业"
+        android:layout_below="@id/schoolEt"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_username"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:maxLines="1"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/major"/>
+
+    <Button
+        android:id="@+id/regBt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/majorEt"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_loginbtn"
+        android:text="注册"
+        android:textColor="#fff"
+        android:textSize="20sp"/>
+</RelativeLayout>

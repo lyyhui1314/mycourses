@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:padding="25dp"
+    android:background="@drawable/main_bg">
+
+    <ImageView
+        android:id="@+id/ig_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:scaleType="fitStart"
+        android:background="#33000000"/>
+
+    <TextView
+        android:id="@+id/tv_jm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="欢迎使用超级课程表！"
+        android:textSize="30sp"
+        android:gravity="right"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登陆"
+        android:background="@drawable/bg_loginbtn"
+        android:layout_marginTop="100dp"
+        android:textSize="20sp"
+        android:layout_below="@id/ig_logo"/>
+
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注册"
+        android:background="@drawable/bg_loginbtn"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:layout_below="@id/btn_login"/>
+
+
+</RelativeLayout>
