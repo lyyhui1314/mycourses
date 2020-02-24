@@ -3,6 +3,8 @@
 Mycourses为app，使用Android studio开发，java语言
 AndroidApp为服务器端，使用visual studio开发，c#语言。
 courses.sql为数据库文件，使用sql server。
+注：
+若出现无法访问，有可能是文件夹的权限问题。
 
 
 
